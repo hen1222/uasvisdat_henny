@@ -2,11 +2,9 @@
 
 Web story interaktif tentang ketimpangan kesehatan di Indonesia, dibangun dengan data Badan Pusat Statistik (BPS). Cerita bergerak dari angka nasional, ke peta 514 kabupaten/kota, ke pola 38 provinsi pada 10 indikator, ke arus impor produk terkait kesehatan, lalu berakhir pada profil daerah yang bisa dipilih pembaca sendiri. Seluruh teks penjelasan dan insight dihitung dari data dan ikut berubah mengikuti pilihan pengguna.
 
-**🔗 Aplikasi (tanpa login, tanpa instalasi): (https://uasvisdat-henny.streamlit.app)**
+**🔗 Aplikasi : (https://uasvisdat-henny.streamlit.app)**
 
-
-<!-- Tambahkan 1–2 tangkapan layar, misalnya: -->
-<!-- ![Peta UHH kab/kota](assets/screenshot-peta.png) -->
+![alt text](tampilanawal.png)
 
 ## Isi cerita
 
@@ -81,7 +79,7 @@ Seluruh data statistik bersumber dari **BPS** (https://www.bps.go.id), diakses 2
 | `san_k` | Persentase Rumah Tangga dengan Akses Sanitasi Layak menurut Kabupaten/Kota | 2024 | https://www.bps.go.id/id/statistics-table/2/Mjc0OCMy/6-2-1-persentase-rumah-tangga-yang-memiliki-akses-terhadap-sanitasi-layak-menurut-kabupaten-kota-persen.html |
 | `pend_k` | Jumlah Penduduk menurut Kabupaten/Kota | 2024 | https://www.bps.go.id/id/statistics-table/2/Mjc9MCMy/jumlah-penduduk-menurut-kabupaten-kota-dan-kelompok-umur.html |
 | `hir` | Statistik Perdagangan Luar Negeri Indonesia Menurut Kode SITC | 2024/2025 | https://www.bps.go.id/id/publication/2026/08/31/e15722f0d16e51d9c64536a2/statistik-perdagangan-luar-negeri-indonesia-menurut-kode-sitc-2004-dan-2025.html |
-| `batas` | Batas wilayah administrasi kab/kota (GeoJSON) | – | **Bukan dari BPS.** [ISI: nama pembuat/penyedia dan URL file GeoJSON] |
+| `batas` | Batas wilayah administrasi kab/kota (GeoJSON) | – | - |
 
 ## Pengolahan data dan keterbatasan
 
@@ -104,5 +102,4 @@ Kode dilisensikan di bawah **MIT** (tambahkan berkas `LICENSE`). Data statistik 
 
 ## Penulis
 
-Henny Merry Astuti (NIM 222313120) · Politeknik Statistika STIS · 2026
-![Tampilan Dasbor Streamlit](tampilanawal.png)
+Henny Merry Astutik (NIM 222313120) · Politeknik Statistika STIS · 2026
