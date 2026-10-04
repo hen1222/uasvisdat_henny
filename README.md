@@ -20,24 +20,23 @@ Web story interaktif tentang ketimpangan kesehatan di Indonesia, dibangun dengan
 
 - **Gambar (PNG):** arahkan kursor ke grafik dan klik ikon kamera di pojok kanan atas. Hasilnya PNG beresolusi 3×. Pada peta dengan **Latar peta = “Tanpa latar”**, PNG-nya transparan dan legenda ikut di samping peta. Pada mode “Dengan peta dasar”, latar peta dasar ikut tersimpan. Legenda grafik lain (biplot, histogram, radar) juga berada di sisi kanan.
 - **Data (CSV):** tombol unduh tersedia untuk peringkat provinsi, rentang di dalam provinsi, dan data multivariat provinsi.
-- Unduhan gambar dibuat di peramban, sehingga tidak memerlukan paket tambahan di server.
 
 ## Metode singkat
 
-- **Klasifikasi peta:** lima kelas, kuantil atau *natural breaks* (K-Means satu dimensi, setara Fisher–Jenks). Kelas dihitung dari seluruh Indonesia agar warna sebanding antarwilayah. Choropleth memakai rasio (persen/tahun), bukan angka absolut.
-- **Rata-rata tertimbang penduduk:** x̄ = Σ(xᵢ·Pᵢ)/ΣPᵢ dengan Pᵢ jumlah penduduk kab/kota.
-- **Autokorelasi spasial (Bab 1, 4):** nilai dibakukan; bobot spasial dari enam tetangga terdekat menurut jarak antartitik pusat poligon, distandardisasi per baris. Indeks Moran global dan klaster LISA lokal; signifikansi dari 499 permutasi acak (nilai *p* terkecil 0,002), α = 0,05. Klaster: tinggi-tinggi, rendah-rendah, tinggi-rendah, rendah-tinggi, tidak signifikan. Tanpa koreksi uji berganda.
-- **Indeks gabungan provinsi (Bab 2):** rata-rata z-score 10 indikator dengan arah dikoreksi (kemiskinan, angka kesakitan, dan merokok dibalik agar nilai tinggi selalu berarti lebih baik).
-- **PCA dan klaster:** PCA 2 komponen pada data terstandarisasi; K-Means dengan K = 2–5 (diatur pengguna), klaster diurutkan menurut indeks gabungan; urutan heatmap dari klaster hierarkis Ward.
-- **Pencilan:** jarak Mahalanobis² d² = zᵀS⁻¹z (S = kovarians antarindikator, memakai pseudo-inversi) di atas kuantil χ² 97,5% dengan df = 10. Karena hanya ada 38 provinsi untuk 10 indikator, taksiran S tidak stabil dan pendekatan χ² kasar; penanda ini dipakai sebagai alat penjelajah, bukan uji formal.
-- **Hierarki impor:** nilai tiap kelompok adalah jumlah nilai komoditas di bawahnya; pertumbuhan dihitung dari nilai yang dijumlahkan di tiap tingkat, bukan dari rata-rata pertumbuhan anaknya.
+- **Klasifikasi peta,** lima kelas, kuantil atau *natural breaks* (K-Means satu dimensi, setara Fisher–Jenks). Kelas dihitung dari seluruh Indonesia agar warna sebanding antarwilayah. Choropleth memakai rasio (persen/tahun), bukan angka absolut.
+- **Rata-rata tertimbang penduduk, ** x̄ = Σ(xᵢ·Pᵢ)/ΣPᵢ dengan Pᵢ jumlah penduduk kab/kota.
+- **Autokorelasi spasial (Bab 1, 4),** nilai dibakukan; bobot spasial dari enam tetangga terdekat menurut jarak antartitik pusat poligon, distandardisasi per baris. Indeks Moran global dan klaster LISA lokal; signifikansi dari 499 permutasi acak (nilai *p* terkecil 0,002), α = 0,05. Klaster: tinggi-tinggi, rendah-rendah, tinggi-rendah, rendah-tinggi, tidak signifikan. Tanpa koreksi uji berganda.
+- **Indeks gabungan provinsi (Bab 2),** rata-rata z-score 10 indikator dengan arah dikoreksi (kemiskinan, angka kesakitan, dan merokok dibalik agar nilai tinggi selalu berarti lebih baik).
+- **PCA dan klaster,** PCA 2 komponen pada data terstandarisasi; K-Means dengan K = 2–5 (diatur pengguna), klaster diurutkan menurut indeks gabungan; urutan heatmap dari klaster hierarkis Ward.
+- **Pencilan,** jarak Mahalanobis² d² = zᵀS⁻¹z (S = kovarians antarindikator, memakai pseudo-inversi) di atas kuantil χ² 97,5% dengan df = 10. Karena hanya ada 38 provinsi untuk 10 indikator, taksiran S tidak stabil dan pendekatan χ² kasar; penanda ini dipakai sebagai alat penjelajah, bukan uji formal.
+- **Hierarki impor,** nilai tiap kelompok adalah jumlah nilai komoditas di bawahnya; pertumbuhan dihitung dari nilai yang dijumlahkan di tiap tingkat, bukan dari rata-rata pertumbuhan anaknya.
 - **Teks insight** (nama daerah, angka, korelasi) dihitung langsung dari data. Korelasi yang ditampilkan adalah asosiasi, bukan bukti sebab-akibat.
 
 ## Struktur repositori
 
 ```
 .
-├── app.py                      # aplikasi Streamlit
+├── app.py                     
 ├── requirements.txt
 ├── .streamlit/config.toml
 └── data/
@@ -60,7 +59,7 @@ Butuh Python 3.10 atau lebih baru. Aplikasi terbuka di `http://localhost:8501`.
 
 ## Sumber data
 
-Seluruh data statistik bersumber dari **BPS** (https://www.bps.go.id), diakses 2 Oktober 2026. Katalog yang sama tampil di dalam aplikasi pada bagian “Catatan data dan metodologi” dan dapat diedit di `sources.py`.
+Seluruh data statistik bersumber dari **BPS** (https://www.bps.go.id), diakses 2 Oktober 2026. Katalog yang sama tampil di dalam aplikasi pada bagian “Catatan data dan metodologi”. 
 
 | Kode | Judul tabel/publikasi | Tahun | URL |
 |---|---|---|---|
@@ -83,7 +82,6 @@ Seluruh data statistik bersumber dari **BPS** (https://www.bps.go.id), diakses 2
 
 ## Pengolahan data dan keterbatasan
 
-- **Kode wilayah Papua.** GeoJSON memakai kode Papua dan Papua Barat sebelum pemekaran 2022, sedangkan data BPS memakai kode baru. 26 poligon dicocokkan lewat nama kab/kota (tabel `KODE_LAMA_KE_BARU` di `app.py`); file GeoJSON tidak diubah. Tanpa langkah ini, 29 kab/kota (termasuk Nduga, Asmat, dan Jayawijaya) tidak tergambar di peta.
 - **Kab/kota tanpa poligon.** Daerah yang belum ada poligonnya di file batas wilayah (saat ini Muna Barat, Buton Tengah, dan Buton Selatan, pemekaran Sulawesi Tenggara) tidak tergambar di peta, tetapi tetap dihitung di tabel dan statistik.
 - **Data kosong.** Beberapa daerah tidak memiliki data sanitasi (511 dari 514 daerah bernilai).
 - **LISA dan Moran.** Tetangga ditentukan dari enam titik pusat terdekat, bukan batas bersama (kontigu); hasil lokal bersifat eksploratif dan tanpa koreksi uji berganda.
