@@ -40,12 +40,11 @@ Web story interaktif tentang ketimpangan kesehatan di Indonesia, dibangun dengan
 ```
 .
 ├── app.py                      # aplikasi Streamlit
-├── sources.py                  # (opsional) katalog sumber BPS; jika tidak ada, app.py memakai salinan bawaan
 ├── requirements.txt
 ├── .streamlit/config.toml
 └── data/
     ├── data_multivariate.xlsx  # 38 provinsi × 10 indikator
-    ├── data_geospasial.xlsx    # indikator kab/kota (UHH, kemiskinan, sanitasi, penduduk)
+    ├── data_geospasial.xlsx    # indikator kab/kota (UHH, kemiskinan, sanitasi, jumlah penduduk)
     ├── data_hirarki.xlsx       # impor per kode SITC 3 digit, 2024 dan 2025
     └── indonesia_kabupaten.geojson  # batas wilayah kab/kota
 ```
@@ -53,8 +52,8 @@ Web story interaktif tentang ketimpangan kesehatan di Indonesia, dibangun dengan
 ## Menjalankan di komputer sendiri
 
 ```bash
-git clone https://github.com/USERNAME/NAMA-REPO.git
-cd NAMA-REPO
+git clone https://github.com/hen1222/uasvisdat_henny.git
+cd uasvisdat_henny
 pip install -r requirements.txt
 streamlit run app.py
 ```
@@ -97,7 +96,7 @@ Seluruh data statistik bersumber dari **BPS** (https://www.bps.go.id), diakses 2
 
 ## Deklarasi penggunaan alat bantu AI
 
-Alat bantu AI digunakan dalam pengembangan kode dan peninjauan aplikasi ini. Seluruh data, sumber, dan interpretasi menjadi tanggung jawab penulis.
+Alat bantu AI digunakan dalam pengoreksi kode dan peninjauan aplikasi ini. Seluruh data, sumber, makalah, desain, alur penelitian, dan interpretasi menjadi tanggung jawab penulis.
 
 ## Lisensi
 
