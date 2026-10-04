@@ -105,3 +105,4 @@ Kode dilisensikan di bawah **MIT** (tambahkan berkas `LICENSE`). Data statistik 
 ## Penulis
 
 Henny Merry Astuti (NIM 222313120) · Politeknik Statistika STIS · 2026
+![Tampilan Dasbor Streamlit](tampilanawal.png)
