@@ -76,7 +76,7 @@ Seluruh data statistik bersumber dari **BPS** (https://www.bps.go.id), diakses 2
 | `miskin_k` | Persentase Penduduk Miskin menurut Kabupaten/Kota | 2024 | https://www.bps.go.id/id/statistics-table/2/NjIxIzI=/persentase-penduduk-miskin--p0--menurut-kabupaten-kota.html |
 | `uhh_k` | [Metode Baru] Umur Harapan Hidup Saat Lahir (UHH) menurut Kabupaten/Kota | 2024 | https://www.bps.go.id/id/statistics-table/2/NDE0IzI=/-metode-baru--umur-harapan-hidup-saat-lahir--uhh-.html |
 | `san_k` | Persentase Rumah Tangga dengan Akses Sanitasi Layak menurut Kabupaten/Kota | 2024 | https://www.bps.go.id/id/statistics-table/2/Mjc0OCMy/6-2-1-persentase-rumah-tangga-yang-memiliki-akses-terhadap-sanitasi-layak-menurut-kabupaten-kota-persen.html |
-| `pend_k` | Jumlah Penduduk menurut Kabupaten/Kota | 2024 | https://www.bps.go.id/id/statistics-table/2/Mjc9MCMy/jumlah-penduduk-menurut-kabupaten-kota-dan-kelompok-umur.html |
+| `pend_k` | Jumlah Penduduk menurut Kabupaten/Kota | 2024 | https://www.bps.go.id/id/statistics-table/2/Mjc5MCMy/-jumlah-penduduk-menurut-kabupaten-kota-dan-kelompok-umur.html |
 | `hir` | Statistik Perdagangan Luar Negeri Indonesia Menurut Kode SITC | 2024/2025 | https://www.bps.go.id/id/publication/2026/08/31/e15722f0d16e51d9c64536a2/statistik-perdagangan-luar-negeri-indonesia-menurut-kode-sitc-2004-dan-2025.html |
 | `batas` | Batas wilayah administrasi kab/kota (GeoJSON) | – | - |
 
