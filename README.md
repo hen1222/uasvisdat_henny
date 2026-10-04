@@ -4,7 +4,7 @@ Web story interaktif tentang ketimpangan kesehatan di Indonesia, dibangun dengan
 
 **🔗 Aplikasi : (https://uasvisdat-henny.streamlit.app)**
 
-![alt text](tampilanawal.png)
+![alt text](assets/awal.png)
 
 ## Isi cerita
 
