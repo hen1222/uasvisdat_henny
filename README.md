@@ -2,7 +2,8 @@
 
 Web story interaktif tentang ketimpangan kesehatan di Indonesia, dibangun dengan data Badan Pusat Statistik (BPS). Cerita bergerak dari angka nasional, ke peta 514 kabupaten/kota, ke pola 38 provinsi pada 10 indikator, ke arus impor produk terkait kesehatan, lalu berakhir pada profil daerah yang bisa dipilih pembaca sendiri. Seluruh teks penjelasan dan insight dihitung dari data dan ikut berubah mengikuti pilihan pengguna.
 
-**🔗 Aplikasi (tanpa login, tanpa instalasi): [GANTI-DENGAN-LINK-APLIKASI.streamlit.app](https://GANTI-DENGAN-LINK-APLIKASI.streamlit.app)**
+**🔗 Aplikasi (tanpa login, tanpa instalasi): [GANTI-DENGAN-LINK-APLIKASI.streamlit.app](https://uasvisdat-henny.streamlit.app)**
+
 
 <!-- Tambahkan 1–2 tangkapan layar, misalnya: -->
 <!-- ![Peta UHH kab/kota](assets/screenshot-peta.png) -->
