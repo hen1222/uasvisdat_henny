@@ -31,13 +31,13 @@ DS = {
     "pend_k": ("Penduduk kab/kota", "Jumlah Penduduk menurut Kabupaten/Kota", "2024", "https://www.bps.go.id/id/statistics-table/2/Mjc9MCMy/jumlah-penduduk-menurut-kabupaten-kota-dan-kelompok-umur.html", True),
     "hir": ("Perdagangan Luar Negeri", "Statistik Perdagangan Luar Negeri Indonesia Menurut Kode SITC", "2024/2025", "https://www.bps.go.id/id/publication/2026/08/31/e15722f0d16e51d9c64536a2/statistik-perdagangan-luar-negeri-indonesia-menurut-kode-sitc-2004-dan-2025.html", True),
     "batas": ("Batas wilayah", "Batas wilayah administrasi kab/kota (GeoJSON)", "", "-", True),
-    }
+}
 
 st.set_page_config(page_title="Peta Kesehatan Indonesia", page_icon="🩺", layout="wide")
 D = Path(__file__).parent / "data"
 OKABE = ["#0072B2", "#E69F00", "#009E73", "#CC79A7", "#D55E00"]
 INK, TEAL, SAND = "#10302c", "#0f766e", "#faf6ef"
-AUTHOR = "HENNY MERRY ASTUTIK · 222313120 · 3SD2"   
+AUTHOR = "HENNY MERRY ASTUTIK · 222313120"
 _v = tuple(int(x) for x in st.__version__.split(".")[:2])
 KW = {"width": "stretch"} if _v >= (1, 52) else {"use_container_width": True}
 fragment = getattr(st, "fragment", None) or getattr(st, "experimental_fragment", None) or (lambda f: f)
@@ -55,13 +55,13 @@ html,body,[class*="css"],.stApp{{font-family:'Inter',sans-serif;color:{INK}}} .s
 h1,h2,h3{{font-family:'Fraunces',serif!important;color:{INK}}}
 .snav{{position:fixed;top:3.75rem;left:0;right:0;z-index:999;background:rgba(250,246,239,.96);border-bottom:1px solid #e3dccb;padding:.45rem 1rem;display:flex;gap:.5rem;overflow-x:auto;white-space:nowrap;justify-content:center}}
 .snav a{{border:1px solid #d9d2c3;background:#fff;border-radius:99px;padding:.25rem .8rem;color:{INK}!important;text-decoration:none;font-size:.82rem;font-weight:600}} .snav a:hover{{background:{TEAL};color:#fff!important}}
-.hero,.hero *{{color:#fff!important}} .hero{{background:linear-gradient(135deg,#0b3b36 0%,#0f766e 60%,#2a9d8f 100%);border-radius:22px;padding:3rem 2.4rem;margin:.5rem 0 1rem}}
-.hero h1{{font-size:clamp(2rem,5vw,3.6rem);line-height:1.1;margin:.3rem 0 1rem}} .hero p{{font-size:1.08rem;max-width:780px;opacity:.95}}
+.hero,.hero *{{color:#fff!important}} .hero{{background:linear-gradient(135deg,#0b3b36 0%,#0f766e 60%,#2a9d8f 100%);border-radius:22px;padding:2.6rem 2.4rem 2.1rem;margin:.5rem 0 1.2rem}}
+.hero h1{{font-size:clamp(2rem,5vw,3.6rem);line-height:1.1;margin:.3rem 0 1rem}} .hero p{{font-size:1.08rem;max-width:780px;opacity:.95;margin-bottom:0}}
 .kicker{{letter-spacing:.18em;font-size:.75rem;text-transform:uppercase;opacity:.85}}
 .cards{{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.9rem;margin:1rem 0}}
 .card{{background:#fff;border:1px solid #e3dccb;border-radius:16px;padding:1rem 1.1rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}}
 .card small{{color:#5f6b68;font-size:.78rem;text-transform:uppercase;letter-spacing:.08em}} .card b{{display:block;font-family:'Fraunces',serif;font-size:2rem;color:{TEAL};margin:.2rem 0}} .card span{{font-size:.86rem;color:#44524f;line-height:1.45}}
-.chap{{margin:3.2rem 0 .4rem;scroll-margin-top:7rem}} .chap small{{color:{TEAL};font-weight:700;letter-spacing:.14em;text-transform:uppercase}}
+.chap{{margin:3rem 0 .4rem;padding-top:1.6rem;border-top:1px solid #e3dccb;scroll-margin-top:7rem}} .chap small{{color:{TEAL};font-weight:700;letter-spacing:.14em;text-transform:uppercase}}
 .chap h2{{font-size:clamp(1.6rem,3.6vw,2.5rem);margin:.2rem 0}} .lead{{font-size:1.06rem;max-width:840px;line-height:1.7}}
 .insight{{border-left:3px solid {TEAL};padding:.15rem 0 .15rem 1rem;margin:1rem 0;line-height:1.75;font-size:1.02rem}}
 .read{{color:#4a5a57;font-size:.92rem;line-height:1.65;margin:.5rem 0;padding-left:1rem;border-left:3px solid #e6dcc3}}
@@ -77,6 +77,8 @@ h1,h2,h3{{font-family:'Fraunces',serif!important;color:{INK}}}
 .badge{{color:#10302c;padding:.05rem .55rem;border-radius:99px;font-size:.78rem}} .pnote{{margin-top:auto;padding-top:.7rem;font-size:.86rem;line-height:1.55;border-top:1px dashed #e3dccb}}
 .st-key-metode_box [data-testid="stExpander"] details{{border:none;border-bottom:1px solid #d9d2c3;border-radius:0;background:transparent}} .st-key-metode_box [data-testid="stExpander"] summary{{padding:.9rem .2rem}} .st-key-metode_box [data-testid="stExpander"] summary p{{font-weight:700;font-size:1.05rem}}
 @media(max-width:700px){{.hero{{padding:1.8rem 1.2rem}}.snav{{justify-content:flex-start}}}}
+@media(max-width:700px){{.block-container{{padding-left:.7rem!important;padding-right:.7rem!important}}.hero{{padding:1.3rem 1rem;border-radius:16px}}.hero h1{{font-size:1.9rem}}.hero p{{font-size:.96rem}}.chap h2{{font-size:1.45rem}}.lead{{font-size:1rem;line-height:1.6}}
+.cards{{grid-template-columns:1fr 1fr;gap:.6rem}}.card{{padding:.7rem .8rem}}.card b{{font-size:1.45rem}}.card span{{font-size:.78rem}}.insight{{font-size:.96rem;line-height:1.65;padding-left:.8rem}}.read{{font-size:.88rem}}.why,.cap{{font-size:.76rem}}.pgrid{{grid-template-columns:1fr}}.snav a{{font-size:.76rem;padding:.2rem .6rem}}.teaser{{padding:.8rem}}}}
 </style>""", unsafe_allow_html=True)
 
 def chapter(i, kicker, title, lead, anchor):
@@ -91,19 +93,28 @@ def cap(title, satuan, catatan, keys):
     st.markdown(f"<div class='cap'><b>{title}</b><br>Satuan: {satuan}.<br>{catatan}<br><b>Sumber: BPS</b> — {short}." + (" Batas wilayah: non-BPS." if "batas" in keys else "") + "</div>", unsafe_allow_html=True)
     with st.expander("Rincian sumber (judul, tahun, URL, tanggal akses)"):
         for k in keys:
-            d = DS[k]; st.markdown(f"- **{d[1]}**{', ' + d[2] if d[2] else ''} · {d[3] or '⚠ URL belum diisi'} · diakses {TGL}" + ("" if d[4] else " · ⚠ perlu diverifikasi"))
+            d = DS[k]; st.markdown(f"- **{d[1]}**{', ' + d[2] if d[2] else ''} · {d[3] or '-'} · diakses {TGL}" + ("" if d[4] else " · "))
 _RM = ["zoom2d", "pan2d", "select2d", "lasso2d", "zoomIn2d", "zoomOut2d", "autoScale2d", "resetScale2d"]
+def _detect_mobile():
+    """Deteksi ponsel/tablet otomatis dari header peramban (butuh Streamlit >= 1.37); jika gagal, dianggap desktop."""
+    try:
+        h = st.context.headers; ua = h.get("User-Agent", "") or ""
+        return h.get("Sec-CH-UA-Mobile", "") == "?1" or any(k in ua for k in ("Mobi", "Android", "iPhone", "iPad", "iPod", "Tablet"))
+    except Exception: return False
+def is_m(): return bool(st.session_state.get("mobile", False))
 def cfg(name, lock=False, zoom=False):
     """Konfigurasi grafik: tombol kamera = unduh PNG beresolusi tinggi dengan latar transparan (legenda ikut di sisi grafik)."""
-    return {"displaylogo": False, "scrollZoom": zoom, "modeBarButtonsToRemove": _RM if lock else [], "toImageButtonOptions": {"format": "png", "filename": name, "scale": 3}}
+    return {"displaylogo": False, "scrollZoom": zoom, "modeBarButtonsToRemove": _RM if lock else (["zoomIn2d", "zoomOut2d", "autoScale2d", "resetScale2d"] if is_m() else []), "toImageButtonOptions": {"format": "png", "filename": name, "scale": 3}}
 def dl(df, label, name):
     st.download_button(label, df.to_csv(index=False).encode("utf-8-sig"), file_name=name + ".csv", mime="text/csv", key="dl_" + name)
-def show(fig, h=520, keys=None, lock=False, fname="grafik", **kw):
+def show(fig, h=520, keys=None, lock=False, fname="grafik", leg=False, **kw):
     if lock: fig.update_xaxes(fixedrange=True); fig.update_yaxes(fixedrange=True)
-    kw["config"] = cfg(fname, lock)
+    kw["config"] = cfg(fname, lock); m_ = is_m()
     m = fig.layout.margin; g = lambda v, d: d if v is None else v
-    fig.update_layout(height=h, paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)", font=dict(family="Inter", color=INK), margin=dict(l=g(m.l, 10), r=g(m.r, 10), t=g(m.t, 50), b=max(g(m.b, 0), 60)))
-    if keys: fig.add_annotation(text=tag(keys), xref="paper", yref="paper", x=1, y=0, xanchor="right", yanchor="top", yshift=-36, showarrow=False, font=dict(size=10, color="#5f6b68"))
+    b0 = max(g(m.b, 0), 84 if m_ else 74) + (50 if (m_ and leg) else 0)
+    fig.update_layout(height=h, paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)", font=dict(family="Inter", color=INK), margin=dict(l=g(m.l, 10), r=min(g(m.r, 10), 14) if m_ else g(m.r, 10), t=g(m.t, 50), b=b0))
+    if m_ and leg: fig.update_layout(legend=dict(orientation="h", yref="container", y=30 / h, yanchor="bottom", x=0, xanchor="left", title=dict(text=""), font=dict(size=10)))
+    if keys: fig.add_annotation(text=tag(keys), xref="paper", yref="paper", x=1, y=0, xanchor="right", yanchor="top", yshift=-(b0 - 16), showarrow=False, font=dict(size=10, color="#5f6b68"))
     ev = st.plotly_chart(fig, **KW, **kw)
     return ev if "on_select" in kw else None
 def table(df):
@@ -127,6 +138,7 @@ REG = {"Indonesia": (-2.3, 118, 3.4), "Sumatera": (-0.5, 101, 4.6), "Jawa & Bali
 def region_of(pc): return "Sumatera" if 11 <= pc <= 21 else "Jawa & Bali" if 31 <= pc <= 36 or pc == 51 else "Nusa Tenggara" if pc in (52, 53) else "Kalimantan" if 61 <= pc <= 65 else "Sulawesi" if 71 <= pc <= 76 else "Maluku" if pc in (81, 82) else "Papua"
 LISA_C = {"Tinggi-tinggi": "#D55E00", "Rendah-rendah": "#0072B2", "Tinggi-rendah": "#E69F00", "Rendah-tinggi": "#56B4E9", "Tidak signifikan": "#d9d9d9"}
 
+# GeoJSON memakai kode Papua lama (sebelum pemekaran 2022); data BPS memakai kode baru.
 KODE_LAMA_KE_BARU = {"9108": "9201", "9107": "9202", "9106": "9203", "9110": "9204", "9109": "9205", "9171": "9271", "9401": "9501", "9413": "9502", "9414": "9503", "9415": "9504",
     "9412": "9601", "9434": "9602", "9436": "9603", "9404": "9604", "9410": "9605", "9435": "9606", "9433": "9607", "9411": "9608",
     "9429": "9701", "9402": "9702", "9430": "9703", "9418": "9704", "9431": "9705", "9432": "9706", "9416": "9707", "9417": "9708"}
@@ -155,6 +167,7 @@ wmean = lambda c: (lambda d: (d[c] * d.jumlah_penduduk).sum() / d.jumlah_pendudu
 st.markdown(f"""<div id='top'></div><div class='snav'><a href='#top'>Awal</a><a href='#bab0'>0 Skala</a><a href='#bab1'>1 Peta kab/kota</a><a href='#bab2'>2 Pola provinsi</a><a href='#bab3'>3 Impor kesehatan</a><a href='#bab4'>4 Cek daerahmu</a><a href='#penutup'>Penutup</a><a href='#metode'>Metodologi</a></div>
 <div class='hero'><div class='kicker'>Web story · Visualisasi Data BPS</div><h1>Peta Kesehatan Indonesia:<br>Siapa yang Tertinggal?</h1>
 <p>Umur panjang bukan hanya urusan rumah sakit. Ia dibentuk oleh air bersih, sanitasi, pendidikan, jaminan kesehatan, dan dompet keluarga. Web story ini mengajak Anda melihat kesehatan Indonesia dari tiga jarak yaitu 514 kabupaten/kota, 38 provinsi, lalu arus impor alat kesehatan. Ayo telurusi daerahmu!!</p></div>""", unsafe_allow_html=True)
+st.session_state["mobile"] = _detect_mobile()
 
 # ============ BAB 0 ============
 @fragment
@@ -174,7 +187,7 @@ def bab0():
     fr.update_layout(xaxis_title=f"{lab_v} ({unit_v})", yaxis=dict(autorange="reversed", tickfont=dict(size=10)), margin=dict(t=30, r=40)); show(fr, 900, keys=[MV[VARS.index(v)]], lock=True, fname=f"peringkat_provinsi_{v}"); dl(d.rename(columns={v: f"{lab_v} ({unit_v})"}), "Unduh data peringkat (CSV)", f"peringkat_provinsi_{v}")
     cap(f"Peringkat provinsi menurut {lab_v}", unit_v, "Biru = 5 provinsi terbaik, oranye = 5 terburuk (arah baik/buruk diperhitungkan); garis putus-putus = rata-rata antar provinsi", [MV[VARS.index(v)]])
     b, w = d.iloc[0], d.iloc[-1]; ratio = max(d[v]) / min(d[v])
-    insight(f"Untuk {lab_v.lower()}, {b.provinsi} ada di posisi teratas ({b[v]:.1f} {unit_v}) dan {w.provinsi} di dasar peringkat ({w[v]:.1f} {unit_v}); selisihnya {abs(b[v]-w[v]):.1f} {unit_v}. {'Semakin tinggi angkanya semakin baik.' if dir_v == 1 else 'Semakin tinggi angkanya semakin buruk.'} Coba ganti indikatornya, dan perhatikan apakah provinsi yang sama selalu berada di bawah.")
+    insight(f"Untuk {lab_v.lower()}, {b.provinsi} ada di posisi teratas ({b[v]:.1f} {unit_v}) dan {w.provinsi} di dasar peringkat ({w[v]:.1f} {unit_v}); selisihnya {abs(b[v]-w[v]):.1f} {unit_v}. {'Semakin tinggi angkanya semakin baik.' if dir_v == 1 else 'Semakin tinggi angkanya semakin buruk.'} Ayo coba ganti indikatornya, dan perhatikan apakah provinsi yang sama selalu berada di bawah??")
     teaser(1, "bab1", "Peta kabupaten/kota", "angka provinsi menyembunyikan perbedaan yang jauh lebih tajam di dalamnya. Bab berikut turun ke 514 kabupaten/kota.")
 bab0()
 
@@ -201,7 +214,7 @@ def moran(ind, P=499):
     return I, p, d.assign(z=z, lag=lag, klaster=np.where(pi < .05, q, "Tidak signifikan"))[["code", "kabkota", "prov_code", "region", "z", "lag", "klaster"]]
 
 @st.cache_resource(show_spinner="Menggambar peta…")
-def map_fig(ind, meth, layer, size_by, region, focus):
+def map_fig(ind, meth, layer, size_by, region, focus, mobile=False):
     gd, lab = prep(ind, meth); pal = PALS[ind]; ttl = f"{LAB[ind][0]} ({LAB[ind][1]})"
     nm = {ind: ttl, "jumlah_penduduk": "Jumlah penduduk (jiwa)", "jml_miskin": "Penduduk miskin (jiwa)"}
     hd = {"code": False, "lat": False, "lon": False, ind: ":.2f", "jumlah_penduduk": ":,", "jml_miskin": ":,"}
@@ -214,12 +227,15 @@ def map_fig(ind, meth, layer, size_by, region, focus):
     else:
         I, p, ld = moran(ind); ld = ld.merge(geo[["code", ind, "jumlah_penduduk"]], on="code")
         f = px.choropleth_map(ld, geojson=gj, locations="code", featureidkey="properties.code", color="klaster", category_orders={"klaster": list(LISA_C)}, color_discrete_map=LISA_C, hover_data={"code": False, "klaster": True, ind: ":.2f", "jumlah_penduduk": ":,"}, opacity=.85, **base); f.update_layout(legend_title_text="Klaster LISA")
-    c0 = REG[region]; zoom = c0[2]; ctr = dict(lat=c0[0], lon=c0[1])
+    c0 = REG[region]; zoom = c0[2] - (1.0 if mobile else 0); ctr = dict(lat=c0[0], lon=c0[1])
     r_ = geo[geo.code == focus]
     if len(r_) and pd.notna(r_.lat.iloc[0]):
-        f.add_trace(go.Scattermap(lat=r_.lat, lon=r_.lon, mode="markers+text", text=r_.kabkota, textposition="top right", marker=dict(size=15, color=INK), showlegend=False, hoverinfo="skip")); ctr = dict(lat=float(r_.lat.iloc[0]), lon=float(r_.lon.iloc[0])); zoom = 7
+        f.add_trace(go.Scattermap(lat=r_.lat, lon=r_.lon, mode="markers+text", text=r_.kabkota, textposition="top right", marker=dict(size=15, color=INK), showlegend=False, hoverinfo="skip")); ctr = dict(lat=float(r_.lat.iloc[0]), lon=float(r_.lon.iloc[0])); zoom = 6 if mobile else 7
     f.update_layout(map=dict(center=ctr, zoom=zoom), height=600, margin=dict(l=0, r=0, t=0, b=34), paper_bgcolor="rgba(0,0,0,0)")
     ks = [MAPKEY[ind], "batas"] + (["pend_k"] if layer != "Klaster LISA (Moran)" else []) + (["miskin_k"] if layer == "Simbol proporsional" and size_by == "jml_miskin" and ind != "persen_miskin" else [])
+    if mobile:
+        f.update_layout(height=470, margin=dict(l=0, r=0, t=72, b=34), legend=dict(orientation="h", x=0, y=1.01, yanchor="bottom", font=dict(size=10), title=dict(font=dict(size=10))),
+                        coloraxis_colorbar=dict(orientation="h", y=1.01, yanchor="bottom", x=0.5, len=.95, thickness=10, title=dict(side="top")))
     f.add_annotation(text=tag(ks), xref="paper", yref="paper", x=1, y=0, xanchor="right", yanchor="top", yshift=-6, showarrow=False, font=dict(size=10, color="#5f6b68")); return f
 
 BOX = {"Indonesia": (94.5, 141.5, -11.5, 6.5), "Sumatera": (94.5, 108.5, -6.3, 6.2), "Jawa & Bali": (104.8, 116, -9, -5.4), "Nusa Tenggara": (115, 127, -11.5, -8), "Kalimantan": (108.5, 119.5, -4.5, 4.5),
@@ -238,7 +254,7 @@ def _xy(codes):
         if c in P: xs += P[c][0]; ys += P[c][1]
     return xs, ys
 @st.cache_resource(show_spinner="Menggambar peta…")
-def map2d(ind, meth, layer, size_by, region, focus):
+def map2d(ind, meth, layer, size_by, region, focus, mobile=False):
     gd, lab = prep(ind, meth); pal = PALS[ind]; lab_i, unit_i, _ = LAB[ind]; f = go.Figure()
     xs, ys = _xy(list(polys())); f.add_trace(go.Scatter(x=xs, y=ys, mode="lines", fill="toself", fillcolor="#ececec", line=dict(width=.3, color="#cfcfcf"), hoverinfo="skip", showlegend=False))
     hov = [f"<b>{r.kabkota}</b><br>{provname.get(r.prov_code, '')}<br>{lab_i}: {getattr(r, ind):.1f} {unit_i}<br>Penduduk: {int(r.jumlah_penduduk):,}<br>Penduduk miskin: {int(r.jml_miskin):,}" for r in gd.itertuples()]
@@ -248,7 +264,7 @@ def map2d(ind, meth, layer, size_by, region, focus):
         f.update_layout(legend=dict(title=dict(text=f"{lab_i} ({unit_i})"), x=1.01, y=.5, xanchor="left", itemsizing="constant"))
     elif layer == "Simbol proporsional":
         v = gd[size_by]; f.add_trace(go.Scatter(x=gd.lon, y=gd.lat, mode="markers", marker=dict(size=v, sizemode="area", sizeref=2. * v.max() / (38 ** 2), color=gd[ind], colorscale=[(i / 4, c) for i, c in enumerate(pal)], opacity=.78, line=dict(width=.4, color="#444"),
-            colorbar=dict(title=dict(text=f"{lab_i} ({unit_i})", side="right"), thickness=12, len=.6, x=1.01, xanchor="left")), showlegend=False, hoverinfo="skip"))
+            colorbar=(dict(orientation="h", title=dict(text=f"{lab_i} ({unit_i})", side="top"), thickness=10, len=.9, x=0.5, y=-0.02, yanchor="top") if mobile else dict(title=dict(text=f"{lab_i} ({unit_i})", side="right"), thickness=12, len=.6, x=1.01, xanchor="left"))), showlegend=False, hoverinfo="skip"))
     else:
         I, p, ld = moran(ind); ld = ld.merge(gd[["code"]], on="code")
         for k_, c_ in LISA_C.items():
@@ -261,9 +277,10 @@ def map2d(ind, meth, layer, size_by, region, focus):
         la, lo = float(r_.lat.iloc[0]), float(r_.lon.iloc[0]); x0, x1, y0, y1 = lo - 2.2, lo + 2.2, la - 1.3, la + 1.3
         f.add_trace(go.Scatter(x=[lo], y=[la], mode="markers+text", text=[r_.kabkota.iloc[0]], textposition="top right", marker=dict(size=11, color=INK, line=dict(width=1.5, color="white")), showlegend=False, hoverinfo="skip"))
     f.update_xaxes(visible=False, range=[x0, x1], constrain="domain"); f.update_yaxes(visible=False, range=[y0, y1], scaleanchor="x", scaleratio=1, constrain="domain")
-    f.update_layout(height=600, dragmode="pan", margin=dict(l=0, r=0, t=10, b=34), paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)", font=dict(family="Inter", color=INK))
+    if mobile and layer != "Simbol proporsional": f.update_layout(legend=dict(orientation="h", x=0, y=-0.02, yanchor="top", font=dict(size=10), title=dict(text="")))
+    f.update_layout(height=int(max(250, min(470, 130 + 340 * (y1 - y0) / (x1 - x0)))) if mobile else 600, dragmode=False if mobile else "pan", margin=dict(l=0, r=0, t=10, b=110 if mobile else 34), paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)", font=dict(family="Inter", color=INK))
     ks = [MAPKEY[ind], "batas"] + (["pend_k"] if layer != "Klaster LISA (Moran)" else []) + (["miskin_k"] if layer == "Simbol proporsional" and size_by == "jml_miskin" and ind != "persen_miskin" else [])
-    f.add_annotation(text=tag(ks), xref="paper", yref="paper", x=0, y=0, xanchor="left", yanchor="top", yshift=-6, showarrow=False, font=dict(size=10, color="#5f6b68")); return f
+    f.add_annotation(text=tag(ks), xref="paper", yref="paper", x=0, y=0, xanchor="left", yanchor="top", yshift=-96 if mobile else -6, showarrow=False, font=dict(size=10, color="#5f6b68")); return f
 
 @fragment
 def bab1():
@@ -271,7 +288,7 @@ def bab1():
     c1, c2, c3 = st.columns([1.2, 1, 1]); ind = c1.selectbox("Indikator (rasio)", list(INFO), format_func=lambda k: f"{LAB[k][0]} ({LAB[k][1]})")
     region = c2.selectbox("Wilayah", list(REG)); meth = c3.radio("Klasifikasi", ["Kuantil", "Natural breaks"], horizontal=True)
     c4, c5 = st.columns([1.6, 1.4]); layer = c4.radio("Jenis peta", ["Choropleth", "Simbol proporsional", "Klaster LISA (Moran)"], horizontal=True)
-    latar = st.radio("Latar peta", ["Tanpa latar (transparan, siap diunduh)", "Dengan peta dasar"], horizontal=True, help="Tanpa latar: hasil unduhan PNG transparan, legenda ikut di samping peta. Dengan peta dasar: ada konteks negara/laut, tetapi unduhan memuat latar tersebut.")
+    latar = c5.radio("Latar peta", ["Tanpa latar", "Dengan peta dasar"], horizontal=True, help="Tanpa latar: hanya batas wilayah, hasil unduhan transparan. Dengan peta dasar: ada konteks negara dan laut.")
     names = geo.sort_values(["prov_code", "kabkota"]); lbl = {r.code: f"{r.kabkota} — {provname.get(r.prov_code, '')}" for r in names.itertuples() if pd.notna(r.lat)}
     foc = c5.selectbox("Cari kabupaten/kota", [""] + list(lbl), format_func=lambda c: "(ketik nama daerah…)" if c == "" else lbl[c])
     size_by = "jml_miskin"
@@ -280,16 +297,17 @@ def bab1():
     if region != "Indonesia": gdat = gdat[gdat.region == region]; gd = gd[gd.region == region]
     st.markdown(f"**{nm_i}** — {defin}; *{arah}*. Di **{region}** tersedia untuk {len(gdat)} kab/kota: rata-rata {gdat[ind].mean():.1f} {unit_i}, rentang {gdat[ind].min():.1f}–{gdat[ind].max():.1f}.")
     _lay = {"Choropleth": "koroplet", "Simbol proporsional": "simbol", "Klaster LISA (Moran)": "lisa"}[layer]
-    if latar.startswith("Tanpa"): st.plotly_chart(map2d(ind, meth, layer, size_by, region, foc), config=cfg(f"peta_{ind}_{_lay}", zoom=True), **KW)
-    else: st.plotly_chart(map_fig(ind, meth, layer, size_by, region, foc), config=cfg(f"peta_{ind}_{_lay}_petadasar", zoom=True), **KW)
-    st.caption("Unduh: arahkan kursor ke peta lalu klik ikon kamera di pojok kanan atas (PNG beresolusi tinggi; pada mode ‘Tanpa latar’ latarnya transparan dan legenda ikut di samping peta). Scroll/seret untuk zoom dan geser.")
+    if latar == "Tanpa latar": st.plotly_chart(map2d(ind, meth, layer, size_by, region, foc, is_m()), config=cfg(f"peta_{ind}_{_lay}", zoom=not is_m()), **KW)
+    else:
+        st.plotly_chart(map_fig(ind, meth, layer, size_by, region, foc, is_m()), config=cfg(f"peta_{ind}_{_lay}_petadasar", zoom=True), **KW)
+        st.markdown("<div style='height:2.8rem'></div>", unsafe_allow_html=True)
+    st.caption("Unduh: klik ikon kamera di pojok kanan atas peta untuk menyimpan PNG beresolusi tinggi. ")
     keys = [MAPKEY[ind], "batas"] + (["pend_k"] if layer != "Klaster LISA (Moran)" else []) + (["miskin_k"] if layer == "Simbol proporsional" and size_by == "jml_miskin" and ind != "persen_miskin" else [])
     sat = {"Choropleth": f"{unit_i} (warna menurut 5 kelas)", "Simbol proporsional": f"{unit_i} (warna) dan jiwa (luas lingkaran)", "Klaster LISA (Moran)": "klaster LISA (kategori)"}[layer]
-    cap(f"{lab_i} menurut kabupaten/kota ({'klaster LISA' if layer.startswith('Klaster') else layer.lower()})", sat, "Kelas dihitung dari seluruh kab/kota Indonesia sehingga warna sebanding antar wilayah; palet berurutan ColorBrewer yang aman buta warna", keys)
+    cap(f"{lab_i} menurut kabupaten/kota ({'klaster LISA' if layer.startswith('Klaster') else layer.lower()})", sat, "Kelas dihitung dari seluruh kab/kota Indonesia sehingga warna sebanding antar wilayah", keys)
     arah_pal = "YlOrBr (kuning→cokelat): nilai tinggi = kondisi buruk, sehingga warna tergelap menandai daerah bermasalah" if ind == "persen_miskin" else "YlGnBu (kuning→biru tua): nilai tinggi = kondisi baik"
     if layer == "Choropleth":
         read(f"Warna menunjukkan kelas {lab_i} ({arah}); kelas pertama di legenda adalah nilai terkecil. Daerah yang tidak berwarna belum punya poligon atau data. Arahkan kursor untuk melihat nilai dan jumlah penduduknya.")
-        why("Peta ini memakai rasio, bukan angka absolut, supaya daerah padat penduduk tidak otomatis tampak lebih gelap. " + ("Kelas dibuat dengan kuantil, sehingga tiap warna berisi jumlah daerah yang hampir sama." if meth == "Kuantil" else "Kelas dibuat dengan natural breaks, sehingga batasnya jatuh di celah alami data dan jumlah daerah per warna tidak sama.") + f" Palet {arah_pal}.")
     elif layer == "Simbol proporsional":
         read(f"Luas lingkaran menunjukkan {'jumlah penduduk miskin (persentase kali jumlah penduduk)' if size_by == 'jml_miskin' else 'jumlah penduduk'}, warnanya menunjukkan {lab_i} ({arah}). Lingkaran besar yang berwarna gelap adalah tempat banyak orang terdampak.")
         why("Choropleth memperlihatkan seberapa buruk persentasenya, sedangkan simbol proporsional memperlihatkan berapa banyak orang yang terdampak. Luas lingkaran, bukan jari-jarinya, dibuat sebanding dengan jumlah agar ukuran tidak terkesan berlebihan.")
@@ -315,7 +333,7 @@ def bab1():
     for e_, nm_, c_, dsh in [(e1, "Batas kuantil", "#0072B2", "dash"), (e2, "Batas natural breaks", "#D55E00", "dot")]:
         for b_ in e_[1:-1]: fh.add_vline(x=b_, line=dict(color=c_, dash=dsh, width=2))
         fh.add_trace(go.Scatter(x=[None], y=[None], mode="lines", line=dict(color=c_, dash=dsh, width=2), name=nm_))
-    fh.update_layout(xaxis_title=f"{lab_i} ({unit_i})", yaxis_title="Jumlah kab/kota", legend=dict(x=1.02, y=1, xanchor="left")); show(fh, 380, keys=[MAPKEY[ind]], lock=True, fname=f"sebaran_kelas_{ind}")
+    fh.update_layout(xaxis_title=f"{lab_i} ({unit_i})", yaxis_title="Jumlah kab/kota", legend=dict(x=1.02, y=1, xanchor="left")); show(fh, 380, keys=[MAPKEY[ind]], lock=True, leg=True, fname=f"sebaran_kelas_{ind}")
     cap(f"Sebaran {lab_i} kabupaten/kota dan batas kelas peta", "jumlah kab/kota (tinggi batang)", "Garis putus-putus = batas kelas kuantil, garis titik = batas natural breaks; seluruh Indonesia", [MAPKEY[ind]])
     cn = pd.cut(sd, e2, include_lowest=True).value_counts(sort=False); big = int(cn.max())
     insight(f"Median {sd.median():.1f} dan rata-rata {sd.mean():.1f} {unit_i}, {'jadi ada sebagian daerah bernilai sangat tinggi yang menarik rata-rata ke atas' if sd.mean() > sd.median() * 1.02 else 'jadi ada sebagian daerah bernilai sangat rendah yang menarik rata-rata ke bawah' if sd.mean() < sd.median() * .98 else 'sebarannya cukup simetris'}. Kuantil membagi tiap kelas sekitar {len(sd)//5} daerah, sedangkan natural breaks menghasilkan {', '.join(str(int(x)) for x in cn)}; kelas terbesarnya memuat {big} dari {len(sd)} daerah ({big/len(sd)*100:.0f}%). Semakin timpang jumlah per kelas, semakin berbeda hasil kedua metode.")
@@ -335,6 +353,7 @@ def bab1():
         t = pg.iloc[-1]; insight(f"Provinsi paling timpang di {region} adalah {t.prov}: {t.lo_n} ({t.lo:.1f}) dan {t.hi_n} ({t.hi:.1f}) terpaut {t.gap:.1f} {unit_i}. Rata-rata provinsi tidak memperlihatkan perbedaan sebesar ini.")
     else: st.info("Wilayah ini tidak punya provinsi dengan ≥ 3 kab/kota bernilai.")
     tanpa = geo[geo.lat.isna()].kabkota.tolist()
+    st.caption(f"Peta menampilkan {int(geo.lat.notna().sum())} dari {len(geo)} kab/kota. " + (f"{len(tanpa)} daerah belum tergambar karena belum ada poligonnya ({', '.join(tanpa)}); " if tanpa else "") + f"{int(geo.sanitasi_layak.isna().sum())} daerah tanpa data sanitasi.")
     teaser(2, "bab2", "Pola antarprovinsi", "peta menunjukkan <i>di mana</i> kesenjangan terjadi. Bab berikut bertanya <i>mengapa</i>: indikator apa yang membedakan provinsi.")
 bab1()
 
@@ -350,7 +369,7 @@ def analyze(k):
 @fragment
 def bab2():
     chapter(2, "Data berdimensi tinggi", "Provinsi mana yang ‘mirip’, dan mana yang menyimpang?", "Sepuluh indikator diringkas jadi dua sumbu lewat PCA lalu dikelompokkan. <b>Pilih titik di biplot dengan kotak/lasso</b> (atau pilih provinsi manual): provinsi yang sama menyala di parallel coordinates di sampingnya, juga di heatmap dan radar (brushing &amp; linking).", "bab2")
-    a1, a2, a3 = st.columns([1, 1, 2]); k = a1.slider("Jumlah klaster (K-Means)", 2, 5, 3); arrows = a2.checkbox("Panah & label variabel", value=True); mv, Z, comp, evr, ro, co = analyze(k)
+    a1, a2, a3 = st.columns([1, 1, 2]); k = a1.slider("Jumlah klaster (K-Means)", 2, 5, 3); arrows = a2.checkbox("Panah & label variabel", value=not is_m()); mv, Z, comp, evr, ro, co = analyze(k)
     extra = a3.multiselect("Pilih provinsi manual (opsional)", mv.provinsi); cats = sorted(mv.klaster.unique(), key=lambda s: int(s[1]))
     Lc, Rc = st.columns(2)
     with Lc:
@@ -364,21 +383,20 @@ def bab2():
             for v, (x, y) in zip(VARS, Ld * sc_):
                 fb.add_annotation(x=x, y=y, ax=0, ay=0, xref="x", yref="y", axref="x", ayref="y", showarrow=True, text="", arrowhead=2, arrowwidth=1.5, arrowcolor="#6b7a77")
                 fb.add_annotation(x=x, y=y, xref="x", yref="y", showarrow=False, text=f"<b>{flat(SHORT[v])}</b>", font=dict(size=11, color=INK), bgcolor="rgba(255,255,255,.8)", xanchor="left" if x >= 0 else "right", yanchor="bottom" if y >= 0 else "top")
-        fb.update_layout(margin=dict(t=20), legend=dict(x=1.02, y=1, xanchor="left", title=""), dragmode="lasso", xaxis_title=f"PC1 ({evr[0]*100:.0f}% varians)", yaxis_title=f"PC2 ({evr[1]*100:.0f}% varians)")
-        ev = show(fb, 560, keys=MV, key="pca", fname="biplot_pca", on_select="rerun", selection_mode=("points", "box", "lasso"))
+        fb.update_layout(margin=dict(t=20), legend=dict(x=1.02, y=1, xanchor="left", title=""), dragmode=False if is_m() else "lasso", xaxis_title=f"PC1 ({evr[0]*100:.0f}% varians)", yaxis_title=f"PC2 ({evr[1]*100:.0f}% varians)")
+        ev = show(fb, 460 if is_m() else 560, keys=MV, key="pca", leg=True, fname="biplot_pca", on_select="rerun", selection_mode=("points", "box", "lasso"))
     sel = sorted(({p["customdata"][0] for p in ev.selection.points if p.get("customdata")} if ev and ev.selection.points else set()) | set(extra))
     with Rc:
         st.markdown("**② Parallel coordinates** — garis oranye = provinsi terpilih")
         col = np.where(mv.provinsi.isin(sel), 1, 0) if sel else mv.kid + .5
         cs = [[0, "#c9ced3"], [1, "#D55E00"]] if sel else sum([[[i / k, OKABE[i]], [(i + 1) / k, OKABE[i]]] for i in range(k)], [])
-        fp = go.Figure(go.Parcoords(line=dict(color=col, colorscale=cs, cmin=0, cmax=1 if sel else k), labelangle=-35, labelside="top", labelfont=dict(size=10), tickfont=dict(size=9), dimensions=[dict(label=SHORT[v], values=mv[v]) for v in VARS]))
-        fp.update_layout(margin=dict(l=40, r=40, t=110, b=20)); show(fp, 560, keys=MV, fname="parallel_coordinates")
+        fp = go.Figure(go.Parcoords(line=dict(color=col, colorscale=cs, cmin=0, cmax=1 if sel else k), labelangle=-45 if is_m() else -35, labelside="top", labelfont=dict(size=10), tickfont=dict(size=9), dimensions=[dict(label=SHORT[v], values=mv[v]) for v in VARS]))
+        fp.update_layout(margin=dict(l=26 if is_m() else 40, r=34 if is_m() else 40, t=110, b=20)); show(fp, 500 if is_m() else 560, keys=MV, fname="parallel_coordinates")
     if sel: st.success(f"{len(sel)} provinsi terpilih: " + ", ".join(sel))
     else: st.caption("Belum ada seleksi — tarik kotak/lasso pada biplot atau pilih provinsi manual untuk menyorotnya di semua tampilan. Seret pada sumbu parallel coordinates untuk menyaring di tampilan itu saja.")
     cap("Biplot PCA dan parallel coordinates 38 provinsi", f"skor komponen utama (biplot); satuan asli tiap indikator (sumbu parallel coordinates)", "Data distandarkan (z-score) sebelum PCA dan K-Means; warna = klaster; ◇ = pencilan Mahalanobis", MV)
     t = pd.Series(comp[0], index=VARS).abs().sort_values(ascending=False).head(3).index
     read(f"Titik yang berdekatan menggambarkan provinsi dengan profil mirip, dan warna menunjukkan klasternya. Panah menunjuk arah naiknya indikator. Sumbu PC1 ({evr[0]*100:.0f}% varians) terutama dibentuk oleh {', '.join(LAB[v][0].lower() for v in t)}. Di parallel coordinates, tiap garis adalah satu provinsi; garis yang menjulang ke ujung banyak sumbu menandai provinsi ekstrem. Pada sumbu miskin, kesakitan, dan merokok, makin tinggi berarti makin buruk.")
-    why(f"Berlian menandai pencilan, yaitu provinsi yang jarak Mahalanobis²-nya (memperhitungkan korelasi antarindikator) melewati batas χ² 97,5% dengan df = {len(VARS)}; karena jumlah provinsi hanya {len(mv)}, batas ini bersifat perkiraan. Indeks klaster adalah rata-rata z-score yang arahnya disamakan (kemiskinan, kesakitan, dan merokok dibalik). Palet Okabe-Ito dipilih agar tetap terbaca oleh pembaca buta warna.")
     if sel:
         ms = mv.provinsi.isin(sel).values; zs = pd.Series((Z * DIRS)[ms].mean(0), index=VARS).sort_values(); kl = mv[ms].klaster.str[:2].value_counts()
         insight(f"{len(sel)} provinsi yang Anda pilih ({', '.join(sel[:6])}{' dan lainnya' if len(sel) > 6 else ''}) punya indeks gabungan rata-rata {mv.indeks[ms].mean():+.2f}, sedangkan rata-rata nasional 0. Mereka tersebar di klaster {', '.join(f'{a} ({b})' for a, b in kl.items())}. Dibanding provinsi lain, kelebihan terbesarnya ada pada {fz(zs.index[-1], True)} ({zs.iloc[-1]:+.1f} simpangan baku) dan kekurangan terbesarnya pada {fz(zs.index[0], False)} ({zs.iloc[0]:+.1f}).")
@@ -412,8 +430,8 @@ def bab2():
         fr = go.Figure()
         for i, p in enumerate(pick):
             vals = mm[mv.provinsi == p].iloc[0].tolist(); th = [flat(SHORT[v]) for v in VARS]; fr.add_trace(go.Scatterpolar(r=vals + vals[:1], theta=th + th[:1], name=p, fill="toself", opacity=.55, line_color=OKABE[i]))
-        fr.update_layout(polar=dict(radialaxis=dict(range=[0, 100])), title="Skor 0-100 (makin keluar = makin baik)"); show(fr, 520, keys=MV, lock=True, fname="radar_provinsi")
-        cap("Radar perbandingan provinsi", "skor 0-100 (min-max antarprovinsi)", "Indikator ‘buruk’ dibalik sehingga luas bidang lebih besar selalu berarti kondisi lebih baik", MV)
+        fr.update_layout(polar=dict(radialaxis=dict(range=[0, 100])), title="Skor 0–100 (makin keluar = makin baik)"); show(fr, 520, keys=MV, lock=True, leg=True, fname="radar_provinsi")
+        cap("Radar perbandingan provinsi", "skor 0–100 (min–max antarprovinsi)", "Indikator ‘buruk’ dibalik sehingga luas bidang lebih besar selalu berarti kondisi lebih baik", MV)
         read("Makin jauh sebuah sudut dari pusat, makin baik provinsi itu pada indikator tersebut dibanding provinsi lain.")
         for p in pick: s = mm[mv.provinsi == p].iloc[0]; st.markdown(f"- **{p}**: rata-rata skor {s.mean():.0f}; terkuat pada *{LAB[s.idxmax()][0]}* ({s.max():.0f}), terlemah pada *{LAB[s.idxmin()][0]}* ({s.min():.0f}).")
     teaser(3, "bab3", "Arus impor kesehatan", "kesehatan juga bergantung pada alat dan obat. Bab berikut menelusuri struktur impor produk kesehatan Indonesia.")
@@ -449,10 +467,10 @@ def bab3():
     com = dict(ids=nd.id, labels=nd.label, parents=nd.parent, values=nd.c25, branchvalues="total", level=nid, customdata=np.c_[nd.c25 / 1e6, nd.growth, nd.perkg],
                marker=dict(colors=nd.growth, colorscale="RdBu", cmid=0, cmin=-m_, cmax=m_, colorbar=dict(title="Pertumbuhan<br>2025 vs 2024 (%)")),
                hovertemplate="<b>%{label}</b><br>Nilai impor: US$ %{customdata[0]:,.0f} juta<br>Pertumbuhan: %{customdata[1]:.1f}%<br>Nilai per kg: US$ %{customdata[2]:,.1f}<extra></extra>")
-    fig = go.Figure({"Treemap": go.Treemap(**com, pathbar=dict(visible=False), textinfo="label+percent root"), "Sunburst": go.Sunburst(**com, textinfo="label"), "Icicle": go.Icicle(**com, tiling=dict(orientation="v"))}[view]); show(fig, 540, keys=["hir"], fname=f"impor_kesehatan_{view.lower()}")
+    if is_m(): com["marker"]["colorbar"] = dict(orientation="h", y=-0.02, yanchor="top", x=0.5, len=.9, thickness=10, title=dict(text="Pertumbuhan 2025 vs 2024 (%)", side="top"))
+    fig = go.Figure({"Treemap": go.Treemap(**com, pathbar=dict(visible=False), textinfo="label+percent root"), "Sunburst": go.Sunburst(**com, textinfo="label"), "Icicle": go.Icicle(**com, tiling=dict(orientation="v"))}[view]); fig.update_layout(margin=dict(b=100 if is_m() else 10)); show(fig, 480 if is_m() else 540, keys=["hir"], fname=f"impor_kesehatan_{view.lower()}")
     cap(f"Struktur impor produk kesehatan menurut SITC ({view.lower()})", "US$ (ukuran = nilai CIF 2025); persen (warna = pertumbuhan 2025 vs 2024)", "Hierarki: total → kelompok (1 digit) → sub-kelompok (2 digit) → komoditas (3 digit). Pertumbuhan tiap tingkat dihitung dari nilai yang dijumlahkan, bukan rata-rata di bawahnya", ["hir"])
     read("Luas kotak atau irisan menunjukkan nilai impor, warnanya menunjukkan pertumbuhan: biru berarti naik, merah turun, putih tidak berubah (skala simetris di titik 0). Pilih kelompok lewat dropdown atau tombol di atas; klik pada grafik hanya memperbesar sementara dan tidak mengubah ringkasan di bawahnya.")
-    why("Besaran (nilai impor) dan perubahan (pertumbuhan) dikodekan terpisah: ukuran untuk nilai absolut, warna divergen yang berpusat di nol untuk perubahan yang bisa naik atau turun. Treemap paling mudah untuk membandingkan luas, sunburst untuk melihat jenjang, dan icicle untuk label yang panjang.")
     n = nd[nd.id == nid].iloc[0]; ch = nd[nd.parent == nid].sort_values("c25", ascending=False); tot = nd.c25.iloc[0]
     txt = f"{n.label} bernilai US$ {n.c25/1e9:.2f} miliar, atau {n.c25/tot*100:.0f}% dari seluruh impor kesehatan, dan {'naik' if n.growth >= 0 else 'turun'} {abs(n.growth):.1f}% dibanding 2024, dengan harga rata-rata US$ {n.perkg:,.0f} per kg."
     if len(ch) == 1: txt += f" Isinya hanya satu: {ch.iloc[0].label}."
@@ -538,9 +556,9 @@ with box:
 
 **Analisis multivariat (Bab 2).** Sepuluh indikator dibakukan (z-score), lalu PCA dua komponen, K-Means, dan klaster hierarkis Ward untuk urutan heatmap. Indeks gabungan = rata-rata z-score dengan arah dikoreksi (kemiskinan, kesakitan, dan merokok dibalik). Pencilan: jarak Mahalanobis² d² = zᵀS⁻¹z (S = kovarians antarindikator) melebihi χ² 97,5% dengan df = 10.
 
-**Hierarki impor (Bab 3).** Nilai tiap kelompok = jumlah nilai komoditas di bawahnya. Pertumbuhan = (CIF 2025 - CIF 2024) / CIF 2024 x 100%, dihitung dari nilai yang dijumlahkan di tiap tingkat, bukan dari rata-rata pertumbuhan anaknya. Warna memakai skala divergen simetris di titik 0.""")
+**Hierarki impor (Bab 3).** Nilai tiap kelompok = jumlah nilai komoditas di bawahnya. Pertumbuhan = (CIF 2025 − CIF 2024) / CIF 2024 × 100%, dihitung dari nilai yang dijumlahkan di tiap tingkat, bukan dari rata-rata pertumbuhan anaknya. Warna memakai skala divergen simetris di titik 0.""")
     with st.expander("Perangkat dan palet warna"):
         st.markdown("""- **Perangkat:** Python, Streamlit, Plotly, pandas, NumPy, scikit-learn, dan SciPy.
 - **Palet warna:** Okabe-Ito untuk kategori; ColorBrewer YlGnBu dan YlOrBr untuk skala berurutan; RdBu untuk skala divergen. Semuanya dipilih agar dapat dibaca pembaca buta warna.
-- **Penggunaan alat bantu AI:** alat bantu AI dipakai sebagai pendamping pengembangan; seluruh isi, pengolahan, dan interpretasi menjadi tanggung jawab penyusun.""")
+- **Penggunaan alat bantu AI:** alat bantu AI dipakai sebagai pendamping pengembangan sedangkan untuk seluruh isi, pengolahan, dan interpretasi menjadi tanggung jawab penyusun.""")
 st.markdown(f"<p style='text-align:center;margin-top:2rem'><a href='#top'>↑ Baca ulang dari awal</a><br><small>Disusun oleh {AUTHOR} · Visualisasi Data · Politeknik Statistika STIS · 2026<br>Sumber data utama: Badan Pusat Statistik (BPS).</small></p>", unsafe_allow_html=True)
